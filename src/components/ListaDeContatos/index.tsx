@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { cadastrar, editar, remover } from '../../store/reducer/contactReducer';
+import { cadastrar, editar, remover } from '../../store/reducer/contatosReducer';
 import Contato from '../../models/Contato';
 import Botao from '../Botao/styles';
-
-interface ContatoState {
-  contatos: Contato[];
-}
+import { RootReducer } from '../../store';
 
 const ListaContatos: React.FC = () => {
   const dispatch = useDispatch();
-  const contatos = useSelector((state: ContatoState) => state.contatos);
+  const contatos = useSelector((state: RootReducer) => state.contatos);
 
   const [novoContato, setNovoContato] = useState<Contato>({ id: Date.now(), nome: '', email: '', telefone: '' });
   const [editaContato, setEditaContato] = useState<Contato | null>(null);
@@ -63,8 +60,8 @@ const ListaContatos: React.FC = () => {
           contatos.map((contato) => (
             <li key={contato.id}>
               <span>{contato.nome} - {contato.email} - {contato.telefone}</span>
-              <Botao onClick={() => removerContato(contato.id)}>Remove</Botao>
-              <Botao onClick={() => setEditaContato(contato)}>Edit</Botao>
+              <Botao onClick={() => removerContato(contato.id)}>Remover</Botao>
+              <Botao onClick={() => setEditaContato(contato)}>Editar</Botao>
             </li>
           ))
         ) : (
