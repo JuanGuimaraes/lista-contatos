@@ -56,8 +56,8 @@ const ListaContatos: React.FC = () => {
       </div>
 
       <ul>
-        {contatos && contatos.length > 0 ? (
-          contatos.map((contato) => (
+        {contatos && contatos.contatos.length > 0 ? (
+          contatos.contatos.map((contato) => (
             <li key={contato.id}>
               <span>{contato.nome} - {contato.email} - {contato.telefone}</span>
               <Botao onClick={() => removerContato(contato.id)}>Remover</Botao>
